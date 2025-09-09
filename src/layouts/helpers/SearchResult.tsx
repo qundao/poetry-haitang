@@ -1,5 +1,8 @@
+import config from "@/config/config.json";
 import { plainify, titleify } from "@/lib/utils/textConverter";
 import React from "react";
+
+const base = config.site.base_path.replace(`/+$`, "");
 
 export interface ISearchItem {
   group: string;
@@ -155,7 +158,7 @@ const SearchResult = ({
                     )}
                     <div className="search-result-item-body">
                       <a
-                        href={`/${item.slug}`}
+                        href={`${base}/${item.slug}`}
                         className="search-result-item-title search-result-item-link"
                       >
                         {matchUnderline(item.frontmatter.title, searchString)}

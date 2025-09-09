@@ -11,10 +11,8 @@ const dateString = today.toISOString().split('T')[0];
 
 // 根据今天的日期查找对应的id
 const work_id = dateConfig[dateString as keyof typeof dateConfig] || null;
-// console.log('today, work_id: ', work_id);
-
-// For static builds, we need to handle the redirect client-side
 const redirectUrl = work_id ? `${base}/works/${work_id}` : `${base}/404`;
+console.log('today, work_id: ', work_id, ' redirectUrl: ', redirectUrl);
 
 // For SSR, we can redirect immediately
 if (import.meta.env.SSR) {

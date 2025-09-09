@@ -47,8 +47,8 @@ export const footerConfig = {
         },
     ],
     secondaryLinks: [
-        { text: '服务条款', href: `${base}/terms-of-service` },
-        { text: '隐私政策', href: `${base}/privacy-policy` },
+        // { text: '服务条款', href: `${base}/terms-of-service` },
+        // { text: '隐私政策', href: `${base}/privacy-policy` },
         { text: '站点地图', href: `${base}/sitemap-index.xml` },
         { text: '关于诗社', href: `${base}/about` },
     ],

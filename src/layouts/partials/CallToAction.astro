@@ -82,7 +82,7 @@ const base = config.site.base_path.replace(`/+$`, "");
         </p>
         <div class="flex flex-wrap justify-center pt-6 gap-6">
           <a
-            href=`${base}/${call_to_action.data.button.link}`
+            href={`${base}/${call_to_action.data.button.link}`}
             class="relative flex h-12 w-full items-center justify-center px-8 before:bg-dark dark:before:bg-darkmode-dark before:absolute before:inset-0 before:rounded-full before:transition before:duration-300 hover:before:scale-105 active:duration-75 active:before:scale-95 sm:w-max"
           >
             <span class="relative text-darkmode-dark dark:text-dark"
