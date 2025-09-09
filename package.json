@@ -6,7 +6,7 @@
   "license": "MIT",
   "scripts": {
     "dev": "pnpm build-data && astro dev",
-    "build": "pnpm build-data && astro build",
+    "build": "pnpm build-extra && pnpm build-data && astro build",
     "preview": "astro preview",
     "format": "prettier -w ./src",
     "generate": "drizzle-kit generate:sqlite",
@@ -16,7 +16,8 @@
     "build-data": "pnpm build_search && pnpm build_date",
     "build_search": "node scripts/build_search.js",
     "build_date": "node scripts/build_date.js",
-    "remove-darkmode": "node scripts/removeDarkmode.js && pnpm format"
+    "remove-darkmode": "node scripts/removeDarkmode.js && pnpm format",
+    "build-extra": "pushd node_modules/.pnpm/better-sqlite3@12.2.0/node_modules/better-sqlite3 && npm run build-release && popd"
   },
   "dependencies": {
     "@astrojs/mdx": "^4.3.5",
