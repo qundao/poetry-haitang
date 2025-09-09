@@ -1,40 +1,40 @@
 ---
+import Base from "@/layouts/Base.astro";
 import dateConfig from ".json/date.json";
 import config from "@/config/config.json";
-import { useEffect } from 'react';
 
 const base = config.site.base_path.replace(`/+$`, "");
 // 获取今天的日期并格式化为YYYY-MM-DD格式
 const today = new Date();
 // const today = new Date('2024-04-18');
-const dateString = today.toISOString().split('T')[0];
+const dateString = today.toISOString().split("T")[0];
 
 // 根据今天的日期查找对应的id
 const work_id = dateConfig[dateString as keyof typeof dateConfig] || null;
 const redirectUrl = work_id ? `${base}/works/${work_id}` : `${base}/404`;
-console.log('today, work_id: ', work_id, ' redirectUrl: ', redirectUrl);
+console.log("today, work_id: ", work_id, " redirectUrl: ", redirectUrl);
+
+const title = "每日一诗" + " - " + config.site.title;
+const description = "每日一诗";
+const canonical = config.site.base_url + redirectUrl;
 
 // For SSR, we can redirect immediately
-if (import.meta.env.SSR) {
-  if (!work_id) {
-    return Astro.redirect(redirectUrl);
-  }
+// if (import.meta.env.SSR) {
+//   if (!work_id) {
+//     return Astro.redirect(redirectUrl);
+//   }
 
-  return Astro.redirect(redirectUrl);
-}
+//   return Astro.redirect(redirectUrl);
+// }
 ---
 
-<!-- Client-side redirect for static builds -->
-<html>
-  <head>
-    <title>Redirecting...</title>
-    <script is:inline>
-      // Client-side redirect
-      window.location.replace('{redirectUrl}');
-    </script>
-    <meta http-equiv="refresh" content={`0;url=${redirectUrl}`} />
-  </head>
-  <body>
-    <p>Redirecting to today's work... <a href={redirectUrl}>Click here if not redirected</a></p>
-  </body>
-</html>
+<Base title={title} description={description} canonical={canonical}>
+  <section class="section px-4 pt-0 pb-0 mb-14 mx-auto">
+    <div class="container">
+      <div class="pt-20 pb-10 grid text-center">
+        <p>正在跳转到<strong>{description}</strong>......</p>
+        <p>如果浏览器未自动跳转，请点击<a href={redirectUrl}>这里</a></p>
+      </div>
+    </div>
+  </section>
+</Base>
