@@ -22,9 +22,10 @@ const {
 } = config.site;
 
 const { theme_switcher }: { theme_switcher: boolean } = config.settings;
+const base = config.site.base_path.replace(`/+$`, "");
 ---
 
-<a href="/" class="navbar-brand inline-block">
+<a href={base} class="navbar-brand inline-block">
   {
     src || srcDarkmode || logo || logo_darkmode ? (
       <>

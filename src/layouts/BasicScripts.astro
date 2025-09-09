@@ -36,17 +36,17 @@ import { UI } from "@/utils/config";
   // change giscus theme
   // https://thezal.dev/article_giscus_astro/
   function setGiscusTheme(theme) {
-    console.log("setGiscusTheme", theme);
+    // console.log("setGiscusTheme", theme);
     const iframe = document.querySelector("iframe.giscus-frame");
     if (!iframe) {
       const giscusScript = document.getElementById("giscus-script");
       if (giscusScript) {
-        console.log("setGiscusTheme, iframe not found but script found");
+        // console.log("setGiscusTheme, iframe not found but script found");
         giscusScript.setAttribute("data-theme", theme);
       }
       return;
     }
-    console.log("setGiscusTheme, giscus iframe found");
+    // console.log("setGiscusTheme, giscus iframe found");
     iframe.contentWindow.postMessage(
       { giscus: { setConfig: { theme } } },
       "https://giscus.app",
@@ -55,19 +55,19 @@ import { UI } from "@/utils/config";
 
   // change toaster theme
   function setToasterTheme(theme) {
-    console.log("setToasterTheme", theme);
+    // console.log("setToasterTheme", theme);
     const toaster = document.getElementById("toaster");
     if (toaster) {
-      console.log("setToasterTheme, toaster found");
+      // console.log("setToasterTheme, toaster found");
       toaster.setAttribute("theme", theme);
     } else {
-      console.log("setToasterTheme, toaster not found");
+      // console.log("setToasterTheme, toaster not found");
     }
   }
 
   // dark mode theme
   function applyTheme(theme) {
-    console.log("applyTheme", theme);
+    // console.log("applyTheme", theme);
     if (theme === "dark") {
       document.documentElement.classList.add("dark");
       setGiscusTheme("dark");
@@ -221,7 +221,7 @@ import { UI } from "@/utils/config";
   window.onpageshow = onPageShow;
 
   document.addEventListener("astro:after-swap", () => {
-    console.log("astro:after-swap, init theme");
+    // console.log("astro:after-swap, init theme");
     initCustomFont();
     initTheme();
     onLoad();

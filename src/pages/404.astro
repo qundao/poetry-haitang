@@ -1,7 +1,9 @@
 ---
 import Base from "@/layouts/Base.astro";
+import config from "@/config/config.json";
 
 export const prerender = true;
+const base = config.site.base_path.replace(`/+$`, "");
 ---
 
 <Base title="Page Not Found">
@@ -21,7 +23,7 @@ export const prerender = true;
               changed, or is temporarily unavailable.
             </p>
           </div>
-          <a href="/" class="btn btn-primary mt-8">Back to home</a>
+          <a href={base} class="btn btn-primary mt-8">Back to home</a>
         </div>
       </div>
     </div>

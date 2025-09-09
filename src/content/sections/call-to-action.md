@@ -8,5 +8,5 @@ description: "加入海棠诗社，共赏诗词之美，和社友共享诗词的
 button:
   enable: true
   label: "🔥 每日一诗"
-  link: "/today"
+  link: "today"
 ---
