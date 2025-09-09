@@ -30,3 +30,7 @@ package-lock.json
 # ignore vercel/netlify adapter
 .vercel
 .netlify
+
+.vscode/
+pnpm-lock.yaml
+trash/
