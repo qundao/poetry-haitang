@@ -6,7 +6,6 @@ import config from "@/config/config.json";
 import Analytics from "@/layouts/Analytics.astro";
 import SpeedInsights from "@vercel/speed-insights/astro";
 import LoadingIndicator from "astro-loading-indicator/component";
-import { ViewTransitions } from "astro:transitions";
 
 // types for frontmatters
 export interface Props {
@@ -32,10 +31,12 @@ const pageImage = `${config.site.base_url}${
 
 const isProd = import.meta.env.PROD;
 const isVercel = import.meta.env.VERCEL == 1;
+const base = config.site.base_path.replace(`/+$`, "");
+const favicon = `${base}/${config.site.favicon}`
 ---
 
 <!-- favicon -->
-<link rel="shortcut icon" href={config.site.favicon} />
+<link rel="shortcut icon" href= />
 <!-- theme meta -->
 <meta name="theme-name" content="haitang" />
 <meta name="msapplication-TileColor" content="#000000" />
@@ -68,7 +69,6 @@ const isVercel = import.meta.env.VERCEL == 1;
 <meta name="description" content={pageDescription} />
 
 <!-- astro view transition -->
-<ViewTransitions />
 <LoadingIndicator color="#9333EA" />
 
 <!-- author from config.json -->

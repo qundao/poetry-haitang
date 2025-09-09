@@ -39,6 +39,7 @@ export interface Props {
   showRssFeed?: boolean;
   showTwitter?: boolean;
   showGithub?: boolean;
+  showHaitang?: boolean;
   position?: string;
 }
 
@@ -55,6 +56,7 @@ const {
   showRssFeed = false,
   showTwitter = false,
   showGithub = false,
+  showHaitang = false,
   position = "center",
 } = Astro.props;
 
@@ -231,6 +233,23 @@ const currentPath = `/${trimSlash(new URL(Astro.url).pathname)}`;
               >
                 <Icon
                   name="tabler:brand-github"
+                  class="w-6 h-6 md:w-5 md:h-5 md:inline-block"
+                />
+              </a>
+            )
+          }
+
+          <!-- site -->
+          {
+            showHaitang && (
+              <a
+                class="rounded-lg text-sm p-2.5 inline-flex items-center hover:bg-gray-200 dark:hover:bg-gray-800"
+                aria-label="Haitang"
+                target="_blank"
+                href="https://haitang.app/"
+              >
+                <Icon
+                  name="tabler:sitemap"
                   class="w-6 h-6 md:w-5 md:h-5 md:inline-block"
                 />
               </a>

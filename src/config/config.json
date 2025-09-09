@@ -4,7 +4,7 @@
     "base_url": "https://qundao.github.io",
     "base_path": "/poetry-haitang",
     "trailing_slash": false,
-    "favicon": "/images/favicon.svg",
+    "favicon": "images/favicon.svg",
     "logo": "/images/logo.png",
     "logo_darkmode": "/images/logo-darkmode.png",
     "logo_width": "124",
