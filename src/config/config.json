@@ -1,7 +1,7 @@
 {
   "site": {
     "title": "海棠诗社",
-    "base_url": "https://haitang.app",
+    "base_url": "https://qundao.github.io",
     "base_path": "/poetry-haitang",
     "trailing_slash": false,
     "favicon": "/images/favicon.svg",
