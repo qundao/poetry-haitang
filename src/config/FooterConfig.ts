@@ -49,11 +49,11 @@ export const footerConfig = {
         { text: '关于诗社', href: '/about' },
     ],
     socialLinks: [
-        // { ariaLabel: 'X', icon: 'tabler:brand-x', href: 'https://twitter.com/javayhu' },
-        // { ariaLabel: 'Github', icon: 'tabler:brand-github', href: 'https://github.com/javayhu/haitang' },
+        // { ariaLabel: 'X', icon: 'tabler:brand-x', href: 'https://twitter.com/' },
+        // { ariaLabel: 'Github', icon: 'tabler:brand-github', href: 'https://github.com/' },
         // { ariaLabel: 'Instagram', icon: 'tabler:brand-instagram', href: '#' },
         // { ariaLabel: 'Facebook', icon: 'tabler:brand-facebook', href: '#' },
         // { ariaLabel: 'RSS', icon: 'tabler:rss', href: '/rss.xml' },
     ],
-    footNote: '© 2024 All Rights Reserved.',
+    footNote: `© 2024-${new Date().getFullYear()} All Rights Reserved.`,
 };
