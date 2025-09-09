@@ -1,6 +1,8 @@
 ---
 import dateConfig from ".json/date.json";
+import config from "@/config/config.json";
 
+const base = config.site.base_path.replace(`/+$`, "");
 // 获取今天的日期并格式化为YYYY-MM-DD格式
 const today = new Date();
 // const today = new Date('2024-04-18');
@@ -11,8 +13,8 @@ const work_id = dateConfig[dateString as keyof typeof dateConfig] || null;
 console.log('today, work_id: ', work_id);
 
 if (!work_id) {
-  return Astro.redirect("/404");
+  return Astro.redirect(`${base}/404`);
 }
 
-return Astro.redirect(`/works/${work_id}`);
+return Astro.redirect(`${base}/works/${work_id}`);
 ---

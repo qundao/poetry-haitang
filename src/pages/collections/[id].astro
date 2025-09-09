@@ -37,7 +37,8 @@ const works = await db
 const title = collection?.name;
 const meta_title = collection?.name + " - " + config.site.title;
 const description = collection.desc ? collection.desc.slice(0, 300) : collection.name;
-const canonical = config.site.base_url + `/collections/${id}`;
+const base = config.site.base_path.replace(`/+$`, "");
+const canonical = config.site.base_path + `${base}/collections/${id}`;
 ---
 
 <Base meta_title={meta_title} description={description} canonical={canonical}>
@@ -61,7 +62,7 @@ const canonical = config.site.base_url + `/collections/${id}`;
           works.map((work, index) => (
             <div>
               <a data-astro-reload
-                href={`/works/${work.work_id}`}
+                href={`${base}/works/${work.work_id}`}
                 title={work.work_title}
                 class="text-sm cursor-pointer"
               >

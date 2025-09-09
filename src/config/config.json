@@ -2,7 +2,7 @@
   "site": {
     "title": "海棠诗社",
     "base_url": "https://haitang.app",
-    "base_path": "/",
+    "base_path": "/poetry-haitang",
     "trailing_slash": false,
     "favicon": "/images/favicon.svg",
     "logo": "/images/logo.png",

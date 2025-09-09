@@ -28,7 +28,8 @@ let dynasties = await db
 
 const title = "朝代" + " - " + config.site.title;
 const description = "所有朝代列表";
-const canonical = config.site.base_url + `/dynasties`;
+const base = config.site.base_path.replace(`/+$`, "");
+const canonical = config.site.base_url + `${base}/dynasties`;
 ---
 
 <Base title={title} description={description} canonical={canonical}>
@@ -41,7 +42,7 @@ const canonical = config.site.base_url + `/dynasties`;
         {
           dynasties.map((dynasty) => (
             <a
-              href={`/dynasties/${dynasty.name}`}
+              href={`${base}/dynasties/${dynasty.name}`}
               class="text-sm cursor-pointer"
             >
               <Card className="hover:bg-gray-100 dark:hover:bg-gray-800 transition duration-150 ease-in-out">

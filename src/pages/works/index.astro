@@ -10,6 +10,7 @@ import { asc, desc } from "drizzle-orm";
 import CategoryElements from "@/components/CategoryElements";
 
 export const prerender = true;
+const base = config.site.base_path.replace(`/+$`, "");
 
 const dynasties = await db
   .select()
@@ -31,7 +32,7 @@ worksByDynasty = worksByDynasty.map((dynasty) => ({
   items: dynasty.items.map((work) => ({
     ...work,
     id: work.id,
-    href: `/works/${work.id}`,
+    href: `${base}/works/${work.id}`,
     name: work.quotes_count >= 2 ? `${work.title} 🔥` : work.title,
   })),
 }));
@@ -39,7 +40,7 @@ worksByDynasty = worksByDynasty.map((dynasty) => ({
 
 const title = "诗词" + " - " + config.site.title; // "Works";
 const description = '所有诗词列表';
-const canonical = config.site.base_url + `/works`;
+const canonical = config.site.base_url + `${base}/works`;
 ---
 
 <Base title={title} description={description} canonical={canonical}>

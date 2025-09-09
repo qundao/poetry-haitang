@@ -1,10 +1,13 @@
 import type { ElementItem } from '@/types';
 import React, { forwardRef } from 'react';
+import config from "@/config/config.json";
 
 interface ElementListProps {
   category: string,
   elements: ElementItem[],
 }
+
+const base = config.site.base_path.replace(`/+$`, "");
 
 /* bg-[#9333EA] */
 const ElementList = forwardRef<HTMLDivElement, ElementListProps>(({ category, elements }, ref) => {
@@ -21,7 +24,7 @@ const ElementList = forwardRef<HTMLDivElement, ElementListProps>(({ category, el
             <a
               href={`${element.href}`}
               className="animated-underline p-1"
-              {...(element.href?.includes('/works/') ? {'data-astro-reload': ''} : {})}
+              {...(element.href?.includes(`${base}/works/`) ? {'data-astro-reload': ''} : {})}
             >
               {element.name}
             </a>

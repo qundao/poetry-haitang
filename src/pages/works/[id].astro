@@ -12,6 +12,7 @@ import SubTitle from "@/partials/SubTitle.astro";
 import Giscus from "@/components/Giscus.astro";
 
 export const prerender = true;
+const base = config.site.base_path.replace(`/+$`, "");
 
 export async function getStaticPaths() {
   const list = await db.select().from(table_works);
@@ -48,7 +49,7 @@ const meta_title = work.title + " - " + author_name + " - " + config.site.title;
 // console.log("work title: ", title, ", layout: ", work.layout);
 // const description = work.intro ? work.intro.slice(0, 100) : work.title;
 const description = work.content ? work.content.slice(0, 160) : work.title;
-const canonical = config.site.base_url + `/works/${id}`;
+const canonical = config.site.base_url + `${base}/works/${id}`;
 // console.log('astro canonical: ', Astro.url);
 ---
 
@@ -64,12 +65,12 @@ const canonical = config.site.base_url + `/works/${id}`;
           <div class="flex justify-center items-center mb-4 mt-8">
             <!-- <span class="mr-2">[{work.dynasty}]</span> -->
             <a
-              href={`/dynasties/${work.dynasty}`}
+              href={`${base}/dynasties/${work.dynasty}`}
               class="animated-underline p-1 text-gray-500 dark:text-gray-300"
               >[{work.dynasty}]</a
             >
             <a
-              href={`/authors/${author_id}`}
+              href={`${base}/authors/${author_id}`}
               class="animated-underline p-1 text-gray-500 dark:text-gray-300"
               >{author_name}</a
             >
@@ -115,7 +116,7 @@ const canonical = config.site.base_url + `/works/${id}`;
                   {collections.map((collection) => (
                     // bg-gray-100 dark:bg-gray-800
                     <a
-                      href={`/collections/${collection.collection_id}`}
+                      href={`${base}/collections/${collection.collection_id}`}
                       class="animated-underline p-1"
                     >
                       # {collection.collection}

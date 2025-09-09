@@ -12,6 +12,7 @@ import { asc, desc } from "drizzle-orm";
 import CategoryElements from "@/components/CategoryElements";
 
 export const prerender = true;
+const base = config.site.base_path.replace(`/+$`, "");
 
 const title = "诗人" + " - " + config.site.title; // "Authors";
 
@@ -45,14 +46,14 @@ authorsByDynasty = authorsByDynasty.map((dynasty) => ({
   items: dynasty.items.map((author) => ({
     ...author,
     id: author.id,
-    href: `/authors/${author.id}`,
+    href: `${base}/authors/${author.id}`,
     name: author.views_count >= 500 ? `${author.name} 🔥` : author.name,
   })),
 }));
 // console.log(authorsByDynasty);
 
 const description = '所有诗人列表';
-const canonical = config.site.base_url + `/authors`;
+const canonical = config.site.base_url + `${base}/authors`;
 ---
 
 <Base title={title} description={description} canonical={canonical}>

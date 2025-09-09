@@ -9,6 +9,8 @@ import {
 import { asc, eq } from "drizzle-orm";
 import CategoryElements from "@/components/CategoryElements";
 
+const base = config.site.base_path.replace(`/+$`, "");
+
 export const prerender = true;
 
 let collectionKinds = await db
@@ -51,7 +53,7 @@ collectionsByKind = collectionsByKind.map((dynasty) => ({
   items: dynasty.items.map((collection) => ({
     ...collection,
     id: collection.id,
-    href: `/collections/${collection.id}`,
+    href: `${base}/collections/${collection.id}`,
     name:
       collection.quotes_count >= 30
         ? `# ${collection.name} 🔥`
@@ -62,7 +64,7 @@ collectionsByKind = collectionsByKind.map((dynasty) => ({
 
 const title = "诗集" + " - " + config.site.title; // "Collections";
 const description = "所有诗集列表";
-const canonical = config.site.base_url + `/collections`;
+const canonical = config.site.base_url + `${base}/collections`;
 ---
 
 <Base title={title} description={description} canonical={canonical}>
