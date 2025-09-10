@@ -1,18 +1,15 @@
 ---
-import Base from "@/layouts/Base.astro";
 import dateConfig from ".json/date.json";
 import config from "@/config/config.json";
+import Base from "@/layouts/Base.astro";
 
 const base = config.site.base_path.replace(`/+$`, "");
 // 获取今天的日期并格式化为YYYY-MM-DD格式
-const today = new Date();
-// const today = new Date('2024-04-18');
-const dateString = today.toISOString().split("T")[0];
+const dateString = (new Date()).toISOString().split("T")[0];
 
 // 根据今天的日期查找对应的id
 const work_id = dateConfig[dateString as keyof typeof dateConfig] || null;
 const redirectUrl = work_id ? `${base}/works/${work_id}` : `${base}/404`;
-console.log("today, work_id: ", work_id, " redirectUrl: ", redirectUrl);
 
 const title = "每日一诗" + " - " + config.site.title;
 const description = "每日一诗";
@@ -37,4 +34,26 @@ const canonical = config.site.base_url + redirectUrl;
       </div>
     </div>
   </section>
+
+  <script
+    set:html={`
+      const dateToIdMap = ${JSON.stringify(dateConfig)};
+      const base = ${JSON.stringify(base)};
+
+      // const dateStr = (new Date()).toISOString().split("T")[0];
+      const now = new Date();
+      const beijing = new Date(now.toLocaleString("zh-CN", { timeZone: "Asia/Shanghai" }));
+      const todayStr = beijing.toISOString().split('T')[0];
+      const page = dateToIdMap[todayStr];
+
+      let url = base + '/404';
+      if (page) {
+        url = base + '/works/' + encodeURIComponent(String(page));
+      }
+
+      // console.log('[Today Redirect]', todayStr, page, url);
+      // 动态跳转
+      window.location.href = url;
+    `}
+  />
 </Base>

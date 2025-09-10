@@ -1,9 +1,7 @@
 ---
-import "@/styles/main.scss";
-
 import config from "@/config/config.json";
-
 import Analytics from "@/layouts/Analytics.astro";
+import "@/styles/main.scss";
 import SpeedInsights from "@vercel/speed-insights/astro";
 import LoadingIndicator from "astro-loading-indicator/component";
 
@@ -18,25 +16,22 @@ export interface Props {
 }
 
 // destructure frontmatters
-const { title, meta_title, description, image, noindex, canonical } =
-  Astro.props;
+const { title, meta_title, description, image, noindex, canonical } = Astro.props;
 
 const pageAuthor = config.metadata.meta_author;
 const pageUrl = `${config.site.base_url}/${Astro.url.pathname.replace("/", "")}`;
-const pageTitle = meta_title ? meta_title : title ? title : config.site.title;
-const pageDescription = description ? description : config.metadata.meta_description;
-const pageImage = `${config.site.base_url}${
-  image ? image : config.metadata.meta_image
-}`;
+const pageTitle = meta_title || title || config.site.title;
+const pageDescription = description || config.metadata.meta_description;
+const pageImage = `${config.site.base_url}${image || config.metadata.meta_image}`;
 
 const isProd = import.meta.env.PROD;
 const isVercel = import.meta.env.VERCEL == 1;
 const base = config.site.base_path.replace(`/+$`, "");
-const favicon = `${base}/${config.site.favicon}`
+const favicon = `${base}/${config.site.favicon}`;
 ---
 
 <!-- favicon -->
-<link rel="shortcut icon" href= />
+<link rel="shortcut icon" href={favicon} />
 <!-- theme meta -->
 <meta name="theme-name" content="haitang" />
 <meta name="msapplication-TileColor" content="#000000" />
@@ -46,10 +41,7 @@ const favicon = `${base}/${config.site.favicon}`
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 
 <!-- responsive meta -->
-<meta
-  name="viewport"
-  content="width=device-width, initial-scale=1, maximum-scale=5"
-/>
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5" />
 
 <!-- title -->
 <title>
@@ -96,11 +88,7 @@ const favicon = `${base}/${config.site.favicon}`
 <meta property="twitter:card" content="summary_large_image" />
 
 <!-- Vercel Speed Insights -->
-{
-  isVercel && <SpeedInsights />
-}
+{isVercel && <SpeedInsights />}
 
 <!-- Analytics -->
-{
-  isProd && <Analytics />
-}
+{isProd && <Analytics />}
