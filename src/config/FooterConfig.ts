@@ -4,17 +4,17 @@ const base = config.site.base_path.replace(`/+$`, "");
 
 export const footerConfig = {
     links: [
-        {
-            title: '网站导航',
-            links: [
-                // { text: '诗词 + AI', href: `${base}/ai` },
-                { text: '每日一诗', href: `${base}/today` },
-                { text: '所有诗集', href: `${base}/collections` },
-                { text: '所有朝代', href: `${base}/dynasties` },
-                { text: '所有诗人', href: `${base}/authors` },
-                { text: '所有诗词', href: `${base}/works` },
-            ],
-        },
+        // {
+        //     title: '网站导航',
+        //     links: [
+        //         // { text: '诗词 + AI', href: `${base}/ai` },
+        //         { text: '每日一诗', href: `${base}/today` },
+        //         { text: '所有诗集', href: `${base}/collections` },
+        //         { text: '所有朝代', href: `${base}/dynasties` },
+        //         { text: '所有诗人', href: `${base}/authors` },
+        //         { text: '所有诗词', href: `${base}/works` },
+        //     ],
+        // },
         {
             title: '热门诗集',
             links: [
@@ -43,6 +43,16 @@ export const footerConfig = {
                 { text: '定风波', href: `${base}/works/10154` },
                 { text: '岳阳楼记', href: `${base}/works/10089` },
                 { text: '归去来兮辞', href: `${base}/works/10277` },
+            ],
+        },
+        {
+            title: '相关网站',
+            links: [
+                { text: '海棠诗社', href: 'https://haitang.app' },
+                { text: '诗词志', href: 'https://shicizhi.com/' },
+                { text: '古诗文', href: 'https://www.gushiwen.cn/' },
+                { text: '中华诗词', href: 'https://www.haoshici.com/' },
+                { text: 'AsPoem', href: 'https://aspoem.com/zh-Hans' },
             ],
         },
     ],
