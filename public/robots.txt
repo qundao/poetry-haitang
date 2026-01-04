@@ -1,6 +1,2 @@
 User-agent: *
-Allow: /
-
-Disallow: /api/*
-
-Sitemap: https://https://qundao.github.io/sitemap-index.xml
+Disallow: /

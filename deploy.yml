@@ -2,8 +2,14 @@ name: GitHub Pages
 
 on:
   push:
-    branches: [dev]
+    branches:
+      - main
+    paths-ignore:
+      - "README.md"
+      - ".gitignore"
   workflow_dispatch:
+  # schedule:
+  #   - cron: "5 5 * * 6"
 
 jobs:
   deploy:
@@ -23,29 +29,27 @@ jobs:
     env:
       USER: ${{ github.repository_owner }}
       REPO: ${{ github.event.repository.name }}
+      HUGO_VERSION: latest
+      HUGO_ENVIRONMENT: production
 
     steps:
       - uses: actions/checkout@v4
 
-      # - name: Install, build, and upload
-      #   uses: withastro/action@v4
-      #   with:
-      #     # path: .
-      #     # node-version: lts
-      #     package-manager: pnpm@latest
-      #   # env:
-      #     # PUBLIC_POKEAPI:
 
-      - name: pnpm
-        uses: pnpm/action-setup@v4
+      - name: Setup Hugo
+        uses: peaceiris/actions-hugo@v3
         with:
-          version: 10
+          hugo-version: ${{ env.HUGO_VERSION }}
+          extended: true
+
+      - name: Preprocess
+        run: |
+          # hugo mod get -u && hugo mod tidy
+          git submodule update --depth=1 --init --remote # --recursive
 
       - name: Build Site
         run: |
-          pnpm install &&
-          pnpm rebuild better-sqlite3 &&
-          pnpm build
+          hugo --gc --minify --baseURL https://${USER}.github.io
 
       - name: Setup pages
         uses: actions/configure-pages@v5
@@ -53,7 +57,7 @@ jobs:
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v4
         with:
-          path: ./dist
+          path: ./public
 
       - name: Deploy to GitHub pages
         id: deployment
